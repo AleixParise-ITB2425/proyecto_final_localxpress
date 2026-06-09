@@ -1,459 +1,458 @@
-# Estudi Previ — LocalXpress
-
-
-## Taula de continguts
-
-1. [Identificació de necessitats tècniques del projecte](#1-identificació-de-necessitats-tècniques-del-projecte)
-2. [Estudi de tecnologies de virtualització i contenidors](#2-estudi-de-tecnologies-de-virtualització-i-contenidors)
-3. [Estudi de tecnologies de base de dades](#3-estudi-de-tecnologies-de-base-de-dades)
-4. [Estudi de tecnologies de backend i API](#4-estudi-de-tecnologies-de-backend-i-api)
-5. [Estudi de tecnologies de proxy invers i SSL](#5-estudi-de-tecnologies-de-proxy-invers-i-ssl)
-6. [Estudi de tecnologies de seguretat](#6-estudi-de-tecnologies-de-seguretat)
-7. [Estudi de tecnologies d'automatització](#7-estudi-de-tecnologies-dautomatització)
-8. [Estudi de solucions d'infraestructura al mercat](#8-estudi-de-solucions-dinfrastructura-al-mercat)
-9. [Anàlisi comparativa i justificació de decisions](#9-anàlisi-comparativa-i-justificació-de-decisions)
-10. [Conclusions](#10-conclusions)
+# Estudio Previo — LocalXpress
 
 ---
 
-## 1. Identificació de necessitats tècniques del projecte
+## Tabla de contenidos
 
-### 1.1 Descripció del projecte
+1. [Identificación de necesidades técnicas del proyecto](#1-identificación-de-necesidades-técnicas-del-proyecto)
+2. [Estudio de tecnologías de virtualización y contenedores](#2-estudio-de-tecnologías-de-virtualización-y-contenedores)
+3. [Estudio de tecnologías de base de datos](#3-estudio-de-tecnologías-de-base-de-datos)
+4. [Estudio de tecnologías de backend y API](#4-estudio-de-tecnologías-de-backend-y-api)
+5. [Estudio de tecnologías de proxy inverso y SSL](#5-estudio-de-tecnologías-de-proxy-inverso-y-ssl)
+6. [Estudio de tecnologías de seguridad](#6-estudio-de-tecnologías-de-seguridad)
+7. [Estudio de tecnologías de automatización](#7-estudio-de-tecnologías-de-automatización)
+8. [Estudio de soluciones de infraestructura en el mercado](#8-estudio-de-soluciones-de-infraestructura-en-el-mercado)
+9. [Análisis comparativo y justificación de decisiones](#9-análisis-comparativo-y-justificación-de-decisiones)
+10. [Conclusiones](#10-conclusiones)
 
-LocalXpress és una plataforma de repartiment local que requereix la posada en marxa d'una infraestructura completa de sistemes informàtics des de zero. El projecte engloba les àrees principals del cicle ASIX: administració de servidors Linux, virtualització i contenidors, bases de dades, xarxes i seguretat, desplegament d'aplicacions i automatitzacions.
+---
 
-### 1.2 Requisits tècnics identificats
+## 1. Identificación de necesidades técnicas del proyecto
 
-Abans de triar cap tecnologia, es van identificar els requisits tècnics que havia de complir la infraestructura:
+### 1.1 Descripción del proyecto
 
-| Requisit | Categoria ASIX | Descripció |
+LocalXpress es una plataforma de reparto local que requiere la puesta en marcha de una infraestructura completa de sistemas informáticos desde cero. El proyecto engloba las áreas principales del ciclo ASIX: administración de servidores Linux, virtualización y contenedores, bases de datos, redes y seguridad, despliegue de aplicaciones y automatizaciones.
+
+### 1.2 Requisitos técnicos identificados
+
+Antes de elegir ninguna tecnología, se identificaron los requisitos técnicos que debía cumplir la infraestructura:
+
+| Requisito | Categoría ASIX | Descripción |
 |---|---|---|
-| Servidor Linux administrat | Sistemes | VPS amb Ubuntu, accés SSH, gestió de serveis |
-| Aïllament de serveis | Virtualització | Contenidors Docker per a serveis auxiliars |
-| Base de dades relacional | Bases de dades | PostgreSQL amb esquema, migracions i backups |
-| Proxy invers amb SSL | Xarxes | Nginx amb Certbot i Let's Encrypt |
-| Autenticació segura | Seguretat | JWT, bcrypt, CORS, RBAC |
-| Comunicació en temps real | Xarxes | WebSockets per a notificacions en temps real |
-| Automatitzacions | Sistemes | Workflows per a tasques repetitives |
-| Còpies de seguretat automàtiques | Sistemes | Backup diari automatitzat amb emmagatzematge remot |
-| Monitorització | Sistemes | Control de processos, logs i seguretat activa |
-| Gestió de processos | Sistemes | Reinici automàtic, zero downtime en desplegaments |
+| Servidor Linux administrado | Sistemas | VPS con Ubuntu, acceso SSH, gestión de servicios |
+| Aislamiento de servicios | Virtualización | Contenedores Docker para servicios auxiliares |
+| Base de datos relacional | Bases de datos | PostgreSQL con esquema, migraciones y backups |
+| Proxy inverso con SSL | Redes | Nginx con Certbot y Let's Encrypt |
+| Autenticación segura | Seguridad | JWT, bcrypt, CORS, RBAC |
+| Comunicación en tiempo real | Redes | WebSockets para notificaciones en tiempo real |
+| Automatizaciones | Sistemas | Workflows para tareas repetitivas |
+| Copias de seguridad automáticas | Sistemas | Backup diario automatizado con almacenamiento remoto |
+| Monitorización | Sistemas | Control de procesos, logs y seguridad activa |
+| Gestión de procesos | Sistemas | Reinicio automático, zero downtime en despliegues |
 
-### 1.3 Àrees del currículum ASIX aplicades
+### 1.3 Áreas del currículum ASIX aplicadas
 
-El projecte aplica directament els mòduls professionals del cicle ASIX:
+El proyecto aplica directamente los módulos profesionales del ciclo ASIX:
 
-| Mòdul professional | Aplicació en el projecte |
+| Módulo profesional | Aplicación en el proyecto |
 |---|---|
-| **Administració de sistemes operatius** | Administració Ubuntu 24.04, systemd, cron, SSH, gestió d'usuaris |
-| **Implantació de sistemes operatius** | Instal·lació i configuració nativa de PostgreSQL, Nginx, Node.js |
-| **Planificació i administració de xarxes** | Configuració de ports, proxy invers, VPN, tallafocs |
-| **Serveis de xarxa i Internet** | DNS, SSL/TLS, HTTP/HTTPS, WebSockets |
-| **Seguretat i Alta Disponibilitat** | JWT, bcrypt, Monarx, Certbot, fail2ban, UFW |
-| **Implantació d'aplicacions web** | Desplegament de backend Node.js, frontend React/Vite |
-| **Administració de bases de dades** | PostgreSQL, esquema, migracions, backups, optimització |
-| **Sistemes de gestió empresarial** | Automatitzacions n8n, integracions externes |
+| **Administración de sistemas operativos** | Administración Ubuntu 24.04, systemd, cron, SSH, gestión de usuarios |
+| **Implantación de sistemas operativos** | Instalación y configuración nativa de PostgreSQL, Nginx, Node.js |
+| **Planificación y administración de redes** | Configuración de puertos, proxy inverso, cortafuegos |
+| **Servicios de red e Internet** | DNS, SSL/TLS, HTTP/HTTPS, WebSockets |
+| **Seguridad y Alta Disponibilidad** | JWT, bcrypt, Monarx, Certbot, fail2ban, UFW |
+| **Implantación de aplicaciones web** | Despliegue de backend Node.js, frontend React/Vite |
+| **Administración de bases de datos** | PostgreSQL, esquema, migraciones, backups, optimización |
+| **Sistemas de gestión empresarial** | Automatizaciones n8n, integraciones externas |
 
 ---
 
-## 2. Estudi de tecnologies de virtualització i contenidors
+## 2. Estudio de tecnologías de virtualización y contenedores
 
-### 2.1 Context
+### 2.1 Contexto
 
-Un dels requisits del projecte és aïllar els serveis auxiliars (automatitzacions, panel d'administració) del sistema operatiu base per facilitar-ne l'actualització i manteniment. Es van estudiar les principals tecnologies de virtualització i contenidors disponibles.
+Uno de los requisitos del proyecto es aislar los servicios auxiliares (automatizaciones, panel de administración) del sistema operativo base para facilitar su actualización y mantenimiento. Se estudiaron las principales tecnologías de virtualización y contenedores disponibles.
 
-### 2.2 Opcions analitzades
+### 2.2 Opciones analizadas
 
-#### Virtualització completa — Màquines virtuals
+#### Virtualización completa — Máquinas virtuales
 
-| Tecnologia | Tipus | Descripció |
+| Tecnología | Tipo | Descripción |
 |---|---|---|
-| VMware ESXi | Hipervisor tipus 1 | Hipervisor bare-metal empresarial, alt rendiment |
-| Proxmox VE | Hipervisor tipus 1 | Open source, gestió web, KVM + LXC |
-| VirtualBox | Hipervisor tipus 2 | Per a entorns de desenvolupament local |
-| KVM (Kernel-based VM) | Hipervisor tipus 1 | Integrat al kernel Linux, alt rendiment |
+| VMware ESXi | Hipervisor tipo 1 | Hipervisor bare-metal empresarial, alto rendimiento |
+| Proxmox VE | Hipervisor tipo 1 | Open source, gestión web, KVM + LXC |
+| VirtualBox | Hipervisor tipo 2 | Para entornos de desarrollo local |
+| KVM (Kernel-based VM) | Hipervisor tipo 1 | Integrado en el kernel Linux, alto rendimiento |
 
-**Característiques de les VM:**
-- Aïllament complet del sistema operatiu
-- Cada VM té el seu propi kernel
-- Alt consum de recursos (RAM, disc)
-- Temps d'arrencada lent (minuts)
-- Ideal per a serveis que requereixen sistemes operatius completament diferents
+**Características de las VM:**
+- Aislamiento completo del sistema operativo
+- Cada VM tiene su propio kernel
+- Alto consumo de recursos (RAM, disco)
+- Tiempo de arranque lento (minutos)
+- Ideal para servicios que requieren sistemas operativos completamente diferentes
 
-#### Contenidors — Virtualització a nivell de SO
+#### Contenedores — Virtualización a nivel de SO
 
-| Tecnologia | Descripció | Avantatges | Desavantatges |
+| Tecnología | Descripción | Ventajas | Desventajas |
 |---|---|---|---|
-| **Docker** | Contenidors basats en imatges | Lleuger, ràpid, Docker Hub, Compose | Kernel compartit amb l'host |
-| LXC / LXD | Contenidors Linux natius | Integrat al kernel, molt lleuger | Menys ecosistema que Docker |
-| Podman | Alternativa a Docker sense daemon | Rootless, compatible Docker | Menys madur, menys documentació |
-| containerd | Runtime de baix nivell | Molt lleuger, usat per Kubernetes | No té CLI pròpia |
+| **Docker** | Contenedores basados en imágenes | Ligero, rápido, Docker Hub, Compose | Kernel compartido con el host |
+| LXC / LXD | Contenedores Linux nativos | Integrado en el kernel, muy ligero | Menos ecosistema que Docker |
+| Podman | Alternativa a Docker sin daemon | Rootless, compatible Docker | Menos maduro, menos documentación |
+| containerd | Runtime de bajo nivel | Muy ligero, usado por Kubernetes | No tiene CLI propia |
 
-#### Orquestació de contenidors
+#### Orquestación de contenedores
 
-| Tecnologia | Descripció | Complexitat | Adequació al projecte |
+| Tecnología | Descripción | Complejidad | Adecuación al proyecto |
 |---|---|---|---|
-| **Docker Compose** | Orquestració de múltiples contenidors en un sol host | Baixa | ✅ Perfecta per a un VPS |
-| Docker Swarm | Clúster de nodes Docker | Mitjana | ❌ Excessiva per a un sol servidor |
-| Kubernetes (K8s) | Orquestació empresarial a escala | Molt alta | ❌ Excessiva per a aquest projecte |
-| Nomad (HashiCorp) | Orquestació lleugera | Mitjana | ❌ Menys estesa, poc valor afegit |
+| **Docker Compose** | Orquestación de múltiples contenedores en un solo host | Baja | ✅ Perfecta para un VPS |
+| Docker Swarm | Clúster de nodos Docker | Media | ❌ Excesiva para un solo servidor |
+| Kubernetes (K8s) | Orquestación empresarial a escala | Muy alta | ❌ Excesiva para este proyecto |
+| Nomad (HashiCorp) | Orquestación ligera | Media | ❌ Menos extendida, poco valor añadido |
 
-### 2.3 Decisió: Docker + Docker Compose per a serveis auxiliars
+### 2.3 Decisión: Docker + Docker Compose para servicios auxiliares
 
-**Justificació tècnica:**
+**Justificación técnica:**
 
-Docker amb Docker Compose és l'opció òptima per al perfil del projecte per les raons següents:
+Docker con Docker Compose es la opción óptima para el perfil del proyecto por las siguientes razones:
 
-- **Recursos:** Els contenidors comparteixen el kernel de l'host i consumeixen una fracció dels recursos d'una VM completa. En un VPS amb 7.8GB de RAM, n8n i EasyPanel en Docker consumeixen menys de 500MB, mentre que dues VM equivalents consumirien 2-4GB.
-- **Velocitat d'arrencada:** Un contenidor Docker arrenca en mil·lisegons, una VM en minuts.
-- **Actualització:** Actualitzar n8n consisteix a fer `docker pull` i `docker compose up -d`. Amb una VM caldria entrar, actualitzar paquets i reiniciar.
-- **Portabilitat:** El `docker-compose.yml` documenta exactament com s'executa cada servei, facilitant la reproducció en un altre servidor si cal.
-- **Aïllament adequat:** Per a serveis de tercers (n8n, EasyPanel), el contenidor proporciona l'aïllament necessari sense la sobrecàrrega d'una VM.
+- **Recursos:** Los contenedores comparten el kernel del host y consumen una fracción de los recursos de una VM completa. En un VPS con 7.8GB de RAM, n8n y EasyPanel en Docker consumen menos de 500MB, mientras que dos VM equivalentes consumirían 2-4GB.
+- **Velocidad de arranque:** Un contenedor Docker arranca en milisegundos, una VM en minutos.
+- **Actualización:** Actualizar n8n consiste en hacer `docker pull` y `docker compose up -d`. Con una VM habría que entrar, actualizar paquetes y reiniciar.
+- **Portabilidad:** El `docker-compose.yml` documenta exactamente cómo se ejecuta cada servicio, facilitando la reproducción en otro servidor si fuera necesario.
+- **Aislamiento adecuado:** Para servicios de terceros (n8n, EasyPanel), el contenedor proporciona el aislamiento necesario sin la sobrecarga de una VM.
 
-**Per què el backend i PostgreSQL no estan en Docker:**
+**Por qué el backend y PostgreSQL no están en Docker:**
 
-Els serveis crítics de rendiment (backend Node.js i PostgreSQL) s'executen de forma **nativa** al sistema operatiu, no en contenidors:
+Los servicios críticos de rendimiento (backend Node.js y PostgreSQL) se ejecutan de forma **nativa** en el sistema operativo, no en contenedores:
 
-- PostgreSQL natiu té accés directe al subsistema d'E/S del kernel, eliminant la latència de xarxa dels contenidors.
-- Experiència prèvia al projecte: una instància AWS EC2 amb PostgreSQL en Docker va patir pèrdua de dades per volums no persistents. La instal·lació nativa elimina completament aquest risc.
-- El backend Node.js gestionat per PM2 té accés directe al sistema de fitxers per a les imatges d'entrega, sense passar per la capa de xarxa Docker.
+- PostgreSQL nativo tiene acceso directo al subsistema de E/S del kernel, eliminando la latencia de red de los contenedores.
+- Experiencia previa en el proyecto: una instancia AWS EC2 con PostgreSQL en Docker sufrió pérdida de datos por volúmenes no persistentes. La instalación nativa elimina completamente este riesgo.
+- El backend Node.js gestionado por PM2 tiene acceso directo al sistema de ficheros para las imágenes de entrega, sin pasar por la capa de red Docker.
 
 ---
 
-## 3. Estudi de tecnologies de base de dades
+## 3. Estudio de tecnologías de base de datos
 
-### 3.1 Requisits identificats
+### 3.1 Requisitos identificados
 
-- Suport per a transaccions ACID (integritat de dades en operacions concurrents)
-- Model de dades relacional (pedides, usuaris, zones, tarifes amb relacions complexes)
-- Suport per a JSON (coordenades de zones geogràfiques)
-- Capacitat de còpies de seguretat automàtiques (`pg_dump`)
-- Rendiment adequat per a consultes amb índexs sobre múltiples taules
-- Accés concurrent des de múltiples processos (backend APP i backend APP-IND)
+- Soporte para transacciones ACID (integridad de datos en operaciones concurrentes)
+- Modelo de datos relacional (pedidos, usuarios, zonas, tarifas con relaciones complejas)
+- Soporte para JSON (coordenadas de zonas geográficas)
+- Capacidad de copias de seguridad automáticas (`pg_dump`)
+- Rendimiento adecuado para consultas con índices sobre múltiples tablas
+- Acceso concurrente desde múltiples procesos (backend APP y backend APP-IND)
 
-### 3.2 Opcions analitzades
+### 3.2 Opciones analizadas
 
-| Sistema | Tipus | ACID | JSON | Rendiment I/O | Llicència |
+| Sistema | Tipo | ACID | JSON | Rendimiento I/O | Licencia |
 |---|---|---|---|---|---|
-| **PostgreSQL** | Relacional | ✅ Complet | ✅ Nadiu (jsonb) | ✅ Excel·lent | Open source |
-| MySQL / MariaDB | Relacional | ✅ (InnoDB) | ⚠️ Bàsic | ✅ Bo | Open source |
-| SQLite | Relacional embegut | ✅ | ❌ | ⚠️ Limitat en concurrència | Open source |
-| MongoDB | Documental | ⚠️ Parcial | ✅ Natiu | ✅ Bo | SSPL |
-| Redis | Clau-valor / caché | ❌ | ❌ | ✅ Molt alt | BSD |
-| Firebase Realtime DB | NoSQL al núvol | ❌ | ✅ | ✅ | Propietari |
+| **PostgreSQL** | Relacional | ✅ Completo | ✅ Nativo (jsonb) | ✅ Excelente | Open source |
+| MySQL / MariaDB | Relacional | ✅ (InnoDB) | ⚠️ Básico | ✅ Bueno | Open source |
+| SQLite | Relacional embebido | ✅ | ❌ | ⚠️ Limitado en concurrencia | Open source |
+| MongoDB | Documental | ⚠️ Parcial | ✅ Nativo | ✅ Bueno | SSPL |
+| Redis | Clave-valor / caché | ❌ | ❌ | ✅ Muy alto | BSD |
+| Firebase Realtime DB | NoSQL en la nube | ❌ | ✅ | ✅ | Propietario |
 
 ### 3.3 Comparativa detallada: PostgreSQL vs MySQL vs MongoDB
 
-| Criteri | PostgreSQL | MySQL | MongoDB |
+| Criterio | PostgreSQL | MySQL | MongoDB |
 |---|---|---|---|
-| Transaccions ACID | ✅ Complet | ✅ (InnoDB) | ⚠️ Parcial |
-| Integritat referencial (FK) | ✅ | ✅ | ❌ |
-| Suport JSON avançat | ✅ jsonb amb índexs | ⚠️ Bàsic | ✅ Natiu |
-| Herència de taules | ✅ | ❌ | ❌ |
-| Vistes materialitzades | ✅ | ❌ | ❌ |
-| pg_dump per a backups | ✅ Nativa | ✅ mysqldump | ⚠️ mongodump |
-| Extensions (PostGIS, etc.) | ✅ Molt ric | ⚠️ Limitat | ⚠️ Limitat |
-| Rendiment en consultes complexes | ✅ Excel·lent | ✅ Bo | ⚠️ Menys òptim |
-| Comunitat i documentació | ✅ Molt gran | ✅ Molt gran | ✅ Gran |
+| Transacciones ACID | ✅ Completo | ✅ (InnoDB) | ⚠️ Parcial |
+| Integridad referencial (FK) | ✅ | ✅ | ❌ |
+| Soporte JSON avanzado | ✅ jsonb con índices | ⚠️ Básico | ✅ Nativo |
+| Herencia de tablas | ✅ | ❌ | ❌ |
+| Vistas materializadas | ✅ | ❌ | ❌ |
+| pg_dump para backups | ✅ Nativa | ✅ mysqldump | ⚠️ mongodump |
+| Extensiones (PostGIS, etc.) | ✅ Muy rico | ⚠️ Limitado | ⚠️ Limitado |
+| Rendimiento en consultas complejas | ✅ Excelente | ✅ Bueno | ⚠️ Menos óptimo |
+| Comunidad y documentación | ✅ Muy grande | ✅ Muy grande | ✅ Grande |
 
-### 3.4 Decisió: PostgreSQL 16 instal·lació nativa
+### 3.4 Decisión: PostgreSQL 16 instalación nativa
 
-**Justificació tècnica:**
-- El model de dades de LocalXpress és inherentment relacional: un `stop` pertany a una `store`, té un `driver`, una `pricing_zone`, una `order_photo` i genera `delivery_notifications`. PostgreSQL és el motor que millor gestiona aquestes relacions amb integritat referencial completa.
-- El camp `coordinates` de `pricing_zones` utilitza el tipus `jsonb` de PostgreSQL, que permet índexs GIN sobre dades JSON, impossible amb MySQL.
-- `pg_dump` genera volcats consistents de tota la base de dades en un sol fitxer compressible, perfecte per al sistema de backup automàtic al Google Drive.
-- La instal·lació nativa (fora de Docker) maximitza el rendiment d'E/S al disc SSD del VPS.
+**Justificación técnica:**
+- El modelo de datos de LocalXpress es inherentemente relacional: un `stop` pertenece a una `store`, tiene un `driver`, una `pricing_zone`, una `order_photo` y genera `delivery_notifications`. PostgreSQL es el motor que mejor gestiona estas relaciones con integridad referencial completa.
+- El campo `coordinates` de `pricing_zones` utiliza el tipo `jsonb` de PostgreSQL, que permite índices GIN sobre datos JSON, imposible con MySQL.
+- `pg_dump` genera volcados consistentes de toda la base de datos en un solo fichero comprimible, perfecto para el sistema de backup automático a Google Drive.
+- La instalación nativa (fuera de Docker) maximiza el rendimiento de E/S en el disco SSD del VPS.
 
 ---
 
-## 4. Estudi de tecnologies de backend i API
+## 4. Estudio de tecnologías de backend y API
 
-### 4.1 Requisits identificats
+### 4.1 Requisitos identificados
 
-- API REST per a la comunicació entre frontend i servidor
-- Autenticació i autorització per rols
-- Comunicació bidireccional en temps real (WebSockets)
-- Gestió de fitxers (imatges de confirmació d'entrega)
-- Integració amb PostgreSQL
-- Gestió de processos en producció (reinici automàtic, zero downtime)
+- API REST para la comunicación entre frontend y servidor
+- Autenticación y autorización por roles
+- Comunicación bidireccional en tiempo real (WebSockets)
+- Gestión de ficheros (imágenes de confirmación de entrega)
+- Integración con PostgreSQL
+- Gestión de procesos en producción (reinicio automático, zero downtime)
 
-### 4.2 Entorns d'execució del servidor
+### 4.2 Entornos de ejecución del servidor
 
-| Tecnologia | Llenguatge | Model concurrència | Adequació |
+| Tecnología | Lenguaje | Modelo concurrencia | Adecuación |
 |---|---|---|---|
-| **Node.js** | JavaScript | Event loop (no bloquejant) | ✅ Excel·lent per a I/O intensiu |
-| Python (Django/FastAPI) | Python | Síncron / ASGI | ✅ Bo, però menys natural amb Socket.io |
-| PHP (Laravel) | PHP | Síncron per petició | ⚠️ Menys adequat per a WebSockets |
-| Java (Spring Boot) | Java | Multi-thread | ✅ Molt robust, però excessiu per a aquest projecte |
-| Go (Gin/Fiber) | Go | Goroutines | ✅ Excel·lent rendiment, però corba d'aprenentatge alta |
-| Ruby on Rails | Ruby | Síncron | ⚠️ Menys rendiment, ecosistema decreixent |
+| **Node.js** | JavaScript | Event loop (no bloqueante) | ✅ Excelente para I/O intensivo |
+| Python (Django/FastAPI) | Python | Síncrono / ASGI | ✅ Bueno, pero menos natural con Socket.io |
+| PHP (Laravel) | PHP | Síncrono por petición | ⚠️ Menos adecuado para WebSockets |
+| Java (Spring Boot) | Java | Multi-thread | ✅ Muy robusto, pero excesivo para este proyecto |
+| Go (Gin/Fiber) | Go | Goroutines | ✅ Excelente rendimiento, pero curva de aprendizaje alta |
+| Ruby on Rails | Ruby | Síncrono | ⚠️ Menos rendimiento, ecosistema decreciente |
 
-### 4.3 Gestors de processos per a Node.js en producció
+### 4.3 Gestores de procesos para Node.js en producción
 
-| Eina | Reinici automàtic | Zero downtime | Logs | Monitorització | Startup SO |
+| Herramienta | Reinicio automático | Zero downtime | Logs | Monitorización | Startup SO |
 |---|---|---|---|---|---|
-| **PM2** | ✅ | ✅ (`pm2 reload`) | ✅ amb rotació | ✅ (`pm2 monit`) | ✅ (`pm2 startup`) |
-| systemd | ✅ | ❌ | ✅ (journald) | ⚠️ Bàsic | ✅ Natiu |
-| Forever | ✅ | ❌ | ⚠️ Bàsic | ❌ | ❌ |
-| Nodemon | ❌ | ❌ | ❌ | ❌ | ❌ (només dev) |
+| **PM2** | ✅ | ✅ (`pm2 reload`) | ✅ con rotación | ✅ (`pm2 monit`) | ✅ (`pm2 startup`) |
+| systemd | ✅ | ❌ | ✅ (journald) | ⚠️ Básico | ✅ Nativo |
+| Forever | ✅ | ❌ | ⚠️ Básico | ❌ | ❌ |
+| Nodemon | ❌ | ❌ | ❌ | ❌ | ❌ (solo dev) |
 | Docker (restart: always) | ✅ | ⚠️ | ✅ | ⚠️ | ✅ |
 
-### 4.4 Protocols de comunicació en temps real
+### 4.4 Protocolos de comunicación en tiempo real
 
-| Protocol | Bidireccional | Reconnexió automàtica | Fallback | Adequació |
+| Protocolo | Bidireccional | Reconexión automática | Fallback | Adecuación |
 |---|---|---|---|---|
-| **Socket.io** | ✅ | ✅ Nativa | ✅ Long-polling | ✅ Excel·lent |
-| WebSocket natiu (RFC 6455) | ✅ | ❌ Manual | ❌ | ✅ Bo però més codi |
-| Server-Sent Events (SSE) | ❌ Unidireccional | ⚠️ | ✅ HTTP | ⚠️ No serveix per a aquest cas |
-| Long Polling | ✅ Simulat | ✅ | ✅ | ❌ Ineficient |
-| gRPC streaming | ✅ | ❌ | ❌ | ❌ Excessiu per a navegadors |
+| **Socket.io** | ✅ | ✅ Nativa | ✅ Long-polling | ✅ Excelente |
+| WebSocket nativo (RFC 6455) | ✅ | ❌ Manual | ❌ | ✅ Bueno pero más código |
+| Server-Sent Events (SSE) | ❌ Unidireccional | ⚠️ | ✅ HTTP | ⚠️ No sirve para este caso |
+| Long Polling | ✅ Simulado | ✅ | ✅ | ❌ Ineficiente |
+| gRPC streaming | ✅ | ❌ | ❌ | ❌ Excesivo para navegadores |
 
-### 4.5 Decisions: Node.js + Express + Socket.io + PM2
+### 4.5 Decisiones: Node.js + Express + Socket.io + PM2
 
-**Justificació tècnica:**
-- Node.js utilitza un model d'event loop no bloquejant ideal per a aplicacions amb moltes connexions concurrents (repartidors connectats simultàniament via WebSocket).
-- Socket.io sobre Node.js és la combinació estàndard de la indústria per a notificacions en temps real. La reconnexió automàtica és crítica per a repartidors amb connectivitat mòbil intermitent.
-- PM2 és l'estàndard de facto per a processos Node.js en producció: `pm2 reload` permet actualitzar l'aplicació sense cap tall de servei.
-- PM2 gestiona dos processos independents (`:3001` i `:3002`) amb logs separats i reinici automàtic individual.
+**Justificación técnica:**
+- Node.js utiliza un modelo de event loop no bloqueante ideal para aplicaciones con muchas conexiones concurrentes (repartidores conectados simultáneamente vía WebSocket).
+- Socket.io sobre Node.js es la combinación estándar de la industria para notificaciones en tiempo real. La reconexión automática es crítica para repartidores con conectividad móvil intermitente.
+- PM2 es el estándar de facto para procesos Node.js en producción: `pm2 reload` permite actualizar la aplicación sin ningún corte de servicio.
+- PM2 gestiona dos procesos independientes (`:3001` y `:3002`) con logs separados y reinicio automático individual.
 
 ---
 
-## 5. Estudi de tecnologies de proxy invers i SSL
+## 5. Estudio de tecnologías de proxy inverso y SSL
 
-### 5.1 Requisits identificats
+### 5.1 Requisitos identificados
 
-- Terminació SSL/TLS per a tot el trànsit extern
-- Enrutament cap a múltiples backends interns (`:3001` i `:3002`)
-- Servei d'arxius estàtics del frontend compilat
-- Gestió automàtica de certificats (sense intervenció manual)
-- Redirecció HTTP → HTTPS
+- Terminación SSL/TLS para todo el tráfico externo
+- Enrutamiento hacia múltiples backends internos (`:3001` y `:3002`)
+- Servicio de archivos estáticos del frontend compilado
+- Gestión automática de certificados (sin intervención manual)
+- Redirección HTTP → HTTPS
 
-### 5.2 Servidors web i proxy invers
+### 5.2 Servidores web y proxy inverso
 
-| Tecnologia | Model | Rendiment estàtics | Proxy | SSL automàtic | Adequació |
+| Tecnología | Modelo | Rendimiento estáticos | Proxy | SSL automático | Adecuación |
 |---|---|---|---|---|---|
-| **Nginx** | Event-driven | ✅ Excel·lent | ✅ | ✅ (Certbot) | ✅ |
-| Apache | Process/thread | ✅ Bo | ✅ | ✅ (Certbot) | ✅ Bo però més pesat |
-| Traefik | Event-driven | ⚠️ | ✅ | ✅ Automàtic Docker | ⚠️ Complex sense Docker |
-| Caddy | Event-driven | ✅ | ✅ | ✅ Natiu | ✅ Simple però menys estès |
-| HAProxy | Event-driven | ❌ (només proxy) | ✅ Excel·lent | ⚠️ | ⚠️ Només balanceig |
+| **Nginx** | Event-driven | ✅ Excelente | ✅ | ✅ (Certbot) | ✅ |
+| Apache | Process/thread | ✅ Bueno | ✅ | ✅ (Certbot) | ✅ Bueno pero más pesado |
+| Traefik | Event-driven | ⚠️ | ✅ | ✅ Automático Docker | ⚠️ Complejo sin Docker |
+| Caddy | Event-driven | ✅ | ✅ | ✅ Nativo | ✅ Simple pero menos extendido |
+| HAProxy | Event-driven | ❌ (solo proxy) | ✅ Excelente | ⚠️ | ⚠️ Solo balanceo |
 
-### 5.3 Gestió de certificats SSL/TLS
+### 5.3 Gestión de certificados SSL/TLS
 
-| Solució | Gratuït | Renovació automàtica | Let's Encrypt | Complexitat |
+| Solución | Gratuito | Renovación automática | Let's Encrypt | Complejidad |
 |---|---|---|---|---|
-| **Certbot** | ✅ | ✅ (cron) | ✅ | Baixa |
-| acme.sh | ✅ | ✅ | ✅ | Mitjana |
-| Certificat autosignat | ✅ | ❌ Manual | ❌ | Baixa |
-| Certificat comercial (DigiCert, etc.) | ❌ (cost anual) | ❌ Manual | ❌ | Baixa |
-| Cloudflare SSL | ✅ (pla gratuït) | ✅ | ✅ | Baixa |
+| **Certbot** | ✅ | ✅ (cron) | ✅ | Baja |
+| acme.sh | ✅ | ✅ | ✅ | Media |
+| Certificado autofirmado | ✅ | ❌ Manual | ❌ | Baja |
+| Certificado comercial (DigiCert, etc.) | ❌ (coste anual) | ❌ Manual | ❌ | Baja |
+| Cloudflare SSL | ✅ (plan gratuito) | ✅ | ✅ | Baja |
 
-### 5.4 Decisió: Nginx + Certbot (Let's Encrypt)
+### 5.4 Decisión: Nginx + Certbot (Let's Encrypt)
 
-**Justificació tècnica:**
-- Nginx és el servidor web/proxy invers més estès en entorns de producció Linux, amb documentació exhaustiva i suport actiu.
-- La combinació Nginx + Certbot és l'estàndard per a l'obtenció i renovació automàtica de certificats Let's Encrypt gratuïts.
-- El cron configurat (`0 */12 * * *`) intenta la renovació cada 12 hores, assegurant que el certificat mai caduca sense intervenció humana.
-- Nginx serveix el frontend compilat (arxius estàtics) directament sense passar pel procés Node.js, reduint la càrrega del backend.
+**Justificación técnica:**
+- Nginx es el servidor web/proxy inverso más extendido en entornos de producción Linux, con documentación exhaustiva y soporte activo.
+- La combinación Nginx + Certbot es el estándar para la obtención y renovación automática de certificados Let's Encrypt gratuitos.
+- El cron configurado (`0 */12 * * *`) intenta la renovación cada 12 horas, asegurando que el certificado nunca caduca sin intervención humana.
+- Nginx sirve el frontend compilado (archivos estáticos) directamente sin pasar por el proceso Node.js, reduciendo la carga del backend.
 
 ---
 
-## 6. Estudi de tecnologies de seguretat
+## 6. Estudio de tecnologías de seguridad
 
-### 6.1 Requisits de seguretat identificats
+### 6.1 Requisitos de seguridad identificados
 
-- Autenticació d'usuaris sense emmagatzemar contrasenyes en text pla
-- Control d'accés per rols (admin, comerciant, repartidor)
-- Xifratge del trànsit client-servidor
-- Protecció contra accés no autoritzat al servidor
-- Monitorització activa d'amenaces
-- Protecció contra atacs de força bruta
+- Autenticación de usuarios sin almacenar contraseñas en texto plano
+- Control de acceso por roles (admin, comerciante, repartidor)
+- Cifrado del tráfico cliente-servidor
+- Protección contra acceso no autorizado al servidor
+- Monitorización activa de amenazas
+- Protección contra ataques de fuerza bruta
 
-### 6.2 Sistemes d'autenticació
+### 6.2 Sistemas de autenticación
 
-| Mètode | Stateless | Escala | Seguretat | Complexitat |
+| Método | Stateless | Escalabilidad | Seguridad | Complejidad |
 |---|---|---|---|---|
-| **JWT (JSON Web Token)** | ✅ | ✅ Excel·lent | ✅ Bo (amb secret fort) | Baixa |
-| Sessions en servidor (express-session) | ❌ | ⚠️ Requereix Redis per escalar | ✅ Bo | Mitjana |
-| OAuth 2.0 / OpenID Connect | ✅ | ✅ | ✅ Excel·lent | Alta |
-| API Keys estàtiques | ✅ | ✅ | ⚠️ No permet expiració fàcil | Molt baixa |
-| Basic Auth (HTTP) | ✅ | ✅ | ❌ Insegur sense HTTPS | Molt baixa |
+| **JWT (JSON Web Token)** | ✅ | ✅ Excelente | ✅ Buena (con secret fuerte) | Baja |
+| Sesiones en servidor (express-session) | ❌ | ⚠️ Requiere Redis para escalar | ✅ Buena | Media |
+| OAuth 2.0 / OpenID Connect | ✅ | ✅ | ✅ Excelente | Alta |
+| API Keys estáticas | ✅ | ✅ | ⚠️ No permite expiración fácil | Muy baja |
+| Basic Auth (HTTP) | ✅ | ✅ | ❌ Inseguro sin HTTPS | Muy baja |
 
-### 6.3 Algorismes de hash de contrasenyes
+### 6.3 Algoritmos de hash de contraseñas
 
-| Algorisme | Resistència brute-force | Salt integrat | Recomanat OWASP | Velocitat |
+| Algoritmo | Resistencia brute-force | Salt integrado | Recomendado OWASP | Velocidad |
 |---|---|---|---|---|
-| **bcrypt** | ✅ Alt (cost configurable) | ✅ | ✅ | Lent (per disseny) |
-| Argon2 | ✅ Molt alt | ✅ | ✅ (primera opció) | Molt lent |
-| scrypt | ✅ Alt | ✅ | ✅ | Lent |
-| PBKDF2 | ✅ Bo | ✅ | ✅ | Configurable |
-| SHA-256 (sense salt) | ❌ Molt baix | ❌ | ❌ | Molt ràpid |
-| MD5 | ❌ Nul | ❌ | ❌ | Molt ràpid |
+| **bcrypt** | ✅ Alta (coste configurable) | ✅ | ✅ | Lento (por diseño) |
+| Argon2 | ✅ Muy alta | ✅ | ✅ (primera opción) | Muy lento |
+| scrypt | ✅ Alta | ✅ | ✅ | Lento |
+| PBKDF2 | ✅ Buena | ✅ | ✅ | Configurable |
+| SHA-256 (sin salt) | ❌ Muy baja | ❌ | ❌ | Muy rápido |
+| MD5 | ❌ Nula | ❌ | ❌ | Muy rápido |
 
-### 6.4 Eines de seguretat a nivell de sistema
+### 6.4 Herramientas de seguridad a nivel de sistema
 
-| Eina | Funció | Tipus | Implementació al projecte |
+| Herramienta | Función | Tipo | Implementación en el proyecto |
 |---|---|---|---|
-| **Monarx Agent** | Detecció de malware i amenaces en temps real | Agent actiu | ✅ Instal·lat i actiu |
-| **Certbot** | Gestió automàtica de certificats SSL | Renovació automàtica | ✅ Cron cada 12h |
-| UFW (Uncomplicated Firewall) | Tallafocs a nivell de xarxa | Tallafocs | 🔜 Pendent de configurar |
-| fail2ban | Protecció contra força bruta SSH/HTTP | IDS/IPS | 🔜 Pendent de configurar |
-| OpenSSH | Accés remot segur | Protocol | ✅ Actiu al port 22 |
-| Helmet.js | Capçaleres HTTP de seguretat | Middleware Express | ✅ Aplicat al backend |
+| **Monarx Agent** | Detección de malware y amenazas en tiempo real | Agente activo | ✅ Instalado y activo |
+| **Certbot** | Gestión automática de certificados SSL | Renovación automática | ✅ Cron cada 12h |
+| UFW (Uncomplicated Firewall) | Cortafuegos a nivel de red | Cortafuegos | 🔜 Pendiente de configurar |
+| fail2ban | Protección contra fuerza bruta SSH/HTTP | IDS/IPS | 🔜 Pendiente de configurar |
+| OpenSSH | Acceso remoto seguro | Protocolo | ✅ Activo en el puerto 22 |
+| Helmet.js | Cabeceras HTTP de seguridad | Middleware Express | ✅ Aplicado en el backend |
 
-### 6.5 Decisions de seguretat aplicades
+### 6.5 Decisiones de seguridad aplicadas
 
-**Justificació tècnica:**
-- **JWT** s'ha triat per la seva naturalesa *stateless*: no requereix emmagatzemar sessions al servidor, cosa que simplifica l'arquitectura i facilita l'escalat futur. El token inclou el `role` de l'usuari i té expiració configurable.
-- **bcrypt** amb 10 rondes de sal és la implementació recomanada per OWASP per a hash de contrasenyes en Node.js. Fa computacionalment inviable un atac per força bruta fins i tot si s'obtingués accés a la base de dades.
-- **Monarx** proporciona detecció activa d'amenaces gestionada per Hostinger, amb actualitzacions automàtiques setmanals.
-- Els ports del backend (`:3001`, `:3002`) i PostgreSQL només haurien d'estar accessibles des de `localhost`, eliminant una superfície d'atac significativa.
+**Justificación técnica:**
+- **JWT** se ha elegido por su naturaleza *stateless*: no requiere almacenar sesiones en el servidor, lo que simplifica la arquitectura y facilita el escalado futuro. El token incluye el `role` del usuario y tiene expiración configurable.
+- **bcrypt** con 10 rondas de sal es la implementación recomendada por OWASP para hash de contraseñas en Node.js. Hace computacionalmente inviable un ataque por fuerza bruta incluso si se obtuviera acceso a la base de datos.
+- **Monarx** proporciona detección activa de amenazas gestionada por Hostinger, con actualizaciones automáticas semanales.
+- Los puertos del backend (`:3001`, `:3002`) solo son accesibles desde `localhost`, eliminando una superficie de ataque significativa.
 
 ---
 
-## 7. Estudi de tecnologies d'automatització
+## 7. Estudio de tecnologías de automatización
 
-### 7.1 Requisits identificats
+### 7.1 Requisitos identificados
 
-- Processament automàtic d'entrades de comandes (email, WhatsApp)
-- Notificacions automàtiques als actors implicats
-- Tasques programades (backups, neteja d'imatges, informes)
-- Integració amb serveis externs (SMTP, WhatsApp Business API)
-- Idempotència en el processament per evitar duplicats
+- Procesamiento automático de entradas de pedidos (email, WhatsApp)
+- Notificaciones automáticas a los actores implicados
+- Tareas programadas (backups, limpieza de imágenes, informes)
+- Integración con servicios externos (SMTP, WhatsApp Business API)
+- Idempotencia en el procesamiento para evitar duplicados
 
-### 7.2 Plataformes d'automatització
+### 7.2 Plataformas de automatización
 
-| Plataforma | Self-hosted | Cost | Integracions | Control dades | Complexitat |
+| Plataforma | Self-hosted | Coste | Integraciones | Control datos | Complejidad |
 |---|---|---|---|---|---|
-| **n8n** | ✅ | Gratuït (self-hosted) | 400+ | ✅ Total | Baixa-mitjana |
-| Zapier | ❌ | Des de 20$/mes + per operació | 6.000+ | ❌ Dades a tercers | Molt baixa |
-| Make (Integromat) | ❌ | Des de 9$/mes + per operació | 1.500+ | ❌ Dades a tercers | Baixa |
-| Apache Airflow | ✅ | Gratuït | Codi | ✅ Total | Molt alta |
-| Cron + scripts bash | ✅ | Gratuït | Codi | ✅ Total | Alta (manteniment) |
-| Node-RED | ✅ | Gratuït | Bona | ✅ Total | Mitjana |
+| **n8n** | ✅ | Gratuito (self-hosted) | 400+ | ✅ Total | Baja-media |
+| Zapier | ❌ | Desde 20$/mes + por operación | 6.000+ | ❌ Datos en terceros | Muy baja |
+| Make (Integromat) | ❌ | Desde 9$/mes + por operación | 1.500+ | ❌ Datos en terceros | Baja |
+| Apache Airflow | ✅ | Gratuito | Código | ✅ Total | Muy alta |
+| Cron + scripts bash | ✅ | Gratuito | Código | ✅ Total | Alta (mantenimiento) |
+| Node-RED | ✅ | Gratuito | Buena | ✅ Total | Media |
 
-### 7.3 Eines de programació de tasques al sistema
+### 7.3 Herramientas de programación de tareas en el sistema
 
-| Eina | Àmbit | Integració BD | Persistència | Adequació |
+| Herramienta | Ámbito | Integración BD | Persistencia | Adecuación |
 |---|---|---|---|---|
-| **node-cron** | Dins del procés Node.js | ✅ Directa | Mentre el procés estigui actiu | ✅ Per a tasques lligades al backend |
-| cron del sistema (crontab) | Sistema operatiu | ⚠️ Via scripts | ✅ Independent del procés | ✅ Per a backups i tasques de sistema |
-| Agenda.js | Node.js + MongoDB | ✅ | ✅ (persisteix a BD) | ⚠️ Requereix MongoDB |
-| Bull / BullMQ | Node.js + Redis | ✅ | ✅ (persisteix a Redis) | ⚠️ Requereix Redis |
+| **node-cron** | Dentro del proceso Node.js | ✅ Directa | Mientras el proceso esté activo | ✅ Para tareas ligadas al backend |
+| cron del sistema (crontab) | Sistema operativo | ⚠️ Via scripts | ✅ Independiente del proceso | ✅ Para backups y tareas de sistema |
+| Agenda.js | Node.js + MongoDB | ✅ | ✅ (persiste en BD) | ⚠️ Requiere MongoDB |
+| Bull / BullMQ | Node.js + Redis | ✅ | ✅ (persiste en Redis) | ⚠️ Requiere Redis |
 
-### 7.4 Decisions: n8n + node-cron + cron del sistema
+### 7.4 Decisiones: n8n + node-cron + cron del sistema
 
-**Justificació tècnica:**
-- **n8n** s'autoallotja al servidor en un contenidor Docker amb el volum `n8n_data` persistent. Això garanteix que cap dada de les comandes o clients surti del servidor propi, a diferència de Zapier o Make que processen les dades als seus servidors.
-- **node-cron** s'utilitza per a la neteja automàtica de fotografies (02:30h) perquè necessita accés directe al filesystem i a la connexió PostgreSQL del procés backend, sense overhead addicional.
-- **cron del sistema** (`/etc/cron.d/localxpress-backup`) s'utilitza per al backup de PostgreSQL (03:00h) perquè és una tasca de sistema operatiu independent de qualsevol procés Node.js — si el backend estigués aturat, el backup s'executaria igualment.
+**Justificación técnica:**
+- **n8n** se autoaloja en el servidor en un contenedor Docker con el volumen `n8n_data` persistente. Esto garantiza que ningún dato de los pedidos o clientes salga del servidor propio, a diferencia de Zapier o Make que procesan los datos en sus servidores.
+- **node-cron** se utiliza para la limpieza automática de fotografías (02:30h) porque necesita acceso directo al filesystem y a la conexión PostgreSQL del proceso backend, sin overhead adicional.
+- **cron del sistema** (`/etc/cron.d/localxpress-backup`) se utiliza para el backup de PostgreSQL (03:00h) porque es una tarea de sistema operativo independiente de cualquier proceso Node.js — si el backend estuviera parado, el backup se ejecutaría igualmente.
 
 ---
 
-## 8. Estudi de solucions d'infraestructura al mercat
+## 8. Estudio de soluciones de infraestructura en el mercado
 
-### 8.1 Opcions d'allotjament analitzades
+### 8.1 Opciones de alojamiento analizadas
 
-| Opció | Tipus | Control SO | Cost | Escalabilitat | Adequació |
+| Opción | Tipo | Control SO | Coste | Escalabilidad | Adecuación |
 |---|---|---|---|---|---|
-| **VPS Hostinger** | VPS | ✅ Total (root) | Fixe i baix | ✅ Vertical senzill | ✅ |
-| AWS EC2 | IaaS | ✅ Total | Variable (per ús) | ✅ Excel·lent | ⚠️ Cost impredictible |
-| Google Cloud Compute | IaaS | ✅ Total | Variable | ✅ Excel·lent | ⚠️ Cost impredictible |
-| DigitalOcean Droplet | VPS | ✅ Total | Fixe | ✅ Bo | ✅ Alternativa vàlida |
-| Heroku / Railway | PaaS | ❌ Parcial | Variable | ✅ | ❌ Sense control de SO |
-| Servidor físic propi | On-premise | ✅ Total | Alt (hardware) | ❌ | ❌ Manteniment físic |
-| Shared Hosting | Hosting compartit | ❌ | Molt baix | ❌ | ❌ Sense root, sense Docker |
+| **VPS Hostinger** | VPS | ✅ Total (root) | Fijo y bajo | ✅ Vertical sencillo | ✅ |
+| AWS EC2 | IaaS | ✅ Total | Variable (por uso) | ✅ Excelente | ⚠️ Coste impredecible |
+| Google Cloud Compute | IaaS | ✅ Total | Variable | ✅ Excelente | ⚠️ Coste impredecible |
+| DigitalOcean Droplet | VPS | ✅ Total | Fijo | ✅ Bueno | ✅ Alternativa válida |
+| Heroku / Railway | PaaS | ❌ Parcial | Variable | ✅ | ❌ Sin control de SO |
+| Servidor físico propio | On-premise | ✅ Total | Alto (hardware) | ❌ | ❌ Mantenimiento físico |
+| Shared Hosting | Hosting compartido | ❌ | Muy bajo | ❌ | ❌ Sin root, sin Docker |
 
 ### 8.2 Comparativa AWS EC2 vs VPS Hostinger
 
-Donat que el projecte va tenir una fase prèvia a AWS EC2, es fa una comparativa directa:
+Dado que el proyecto tuvo una fase previa en AWS EC2, se realiza una comparativa directa:
 
-| Criteri | AWS EC2 | VPS Hostinger |
+| Criterio | AWS EC2 | VPS Hostinger |
 |---|---|---|
-| Control del sistema operatiu | ✅ Total | ✅ Total |
-| Cost mensual previsible | ❌ Variable | ✅ Fix |
-| Persistència de dades per defecte | ❌ Requereix EBS configurat | ✅ Disc SSD persistent |
-| Complexitat de configuració de xarxa | Alta (VPC, Security Groups, IGW) | Baixa (UFW, configuració directa) |
-| Temps de posada en marxa | Mitjà | Ràpid |
-| Suport tècnic | ⚠️ Cost addicional | ✅ Inclòs |
-| Escalat automàtic | ✅ Auto Scaling | ❌ Manual |
-| Experiència al projecte | ❌ Pèrdua de dades per volums | ✅ Estable |
+| Control del sistema operativo | ✅ Total | ✅ Total |
+| Coste mensual previsible | ❌ Variable | ✅ Fijo |
+| Persistencia de datos por defecto | ❌ Requiere EBS configurado | ✅ Disco SSD persistente |
+| Complejidad de configuración de red | Alta (VPC, Security Groups, IGW) | Baja (UFW, configuración directa) |
+| Tiempo de puesta en marcha | Medio | Rápido |
+| Soporte técnico | ⚠️ Coste adicional | ✅ Incluido |
+| Escalado automático | ✅ Auto Scaling | ❌ Manual |
+| Experiencia en el proyecto | ❌ Pérdida de datos por volúmenes | ✅ Estable |
 
-**Lliçó apresa:** La instància AWS EC2 va patir una pèrdua de dades de PostgreSQL en un contenidor Docker perquè el volum no estava correctament configurat com a EBS persistent. Hostinger VPS amb disc SSD fix i PostgreSQL instal·lat nativament elimina completament aquest risc.
+**Lección aprendida:** La instancia AWS EC2 sufrió una pérdida de datos de PostgreSQL en un contenedor Docker porque el volumen no estaba correctamente configurado como EBS persistente. El VPS Hostinger con disco SSD fijo y PostgreSQL instalado de forma nativa elimina completamente este riesgo.
 
-### 8.3 Panels d'administració de servidors
+### 8.3 Paneles de administración de servidores
 
-| Eina | Tipus | Docker | SSL | Cost | Adequació |
+| Herramienta | Tipo | Docker | SSL | Coste | Adecuación |
 |---|---|---|---|---|---|
-| **EasyPanel** | Panel modern | ✅ Natiu | ✅ | Gratuït (self-hosted) | ✅ |
-| Portainer | Gestió Docker | ✅ Natiu | ⚠️ | Gratuït | ✅ Alternativa |
-| cPanel | Hosting tradicional | ❌ | ✅ | Cost elevat | ❌ |
-| Plesk | Hosting tradicional | ⚠️ | ✅ | Cost elevat | ❌ |
-| Webmin | Administració Unix | ❌ | ✅ | Gratuït | ⚠️ Antiquat |
-| Cockpit | Administració Linux modern | ⚠️ | ✅ | Gratuït | ✅ Alternativa |
+| **EasyPanel** | Panel moderno | ✅ Nativo | ✅ | Gratuito (self-hosted) | ✅ |
+| Portainer | Gestión Docker | ✅ Nativo | ⚠️ | Gratuito | ✅ Alternativa |
+| cPanel | Hosting tradicional | ❌ | ✅ | Coste elevado | ❌ |
+| Plesk | Hosting tradicional | ⚠️ | ✅ | Coste elevado | ❌ |
+| Webmin | Administración Unix | ❌ | ✅ | Gratuito | ⚠️ Anticuado |
+| Cockpit | Administración Linux moderno | ⚠️ | ✅ | Gratuito | ✅ Alternativa |
 
 ---
 
-## 9. Anàlisi comparativa i justificació de decisions
+## 9. Análisis comparativo y justificación de decisiones
 
-### 9.1 Taula resum de decisions tecnològiques
+### 9.1 Tabla resumen de decisiones tecnológicas
 
-| Component | Tecnologia triada | Principal alternativa | Raó principal de l'elecció |
+| Componente | Tecnología elegida | Principal alternativa | Razón principal de la elección |
 |---|---|---|---|
-| Sistema operatiu | Ubuntu 24.04 LTS | Debian 12 | LTS amb suport fins 2029, ampla comunitat, paquets actuals |
-| Contenidors | Docker + Docker Compose | LXC | Ecosistema, Docker Hub, Compose per a orquestació senzilla |
-| Base de dades | PostgreSQL 16 natiu | MySQL / MongoDB | ACID complet, jsonb, relacions complexes, pg_dump |
-| Backend | Node.js + Express | Django (Python) | Event loop per a WebSockets, mateix llenguatge que frontend |
-| Temps real | Socket.io | WebSocket natiu | Reconnexió automàtica, rooms, fallback HTTP |
-| Proxy invers | Nginx | Apache / Caddy | Rendiment, maduresa, integració Certbot |
-| SSL | Let's Encrypt + Certbot | Certificat comercial | Gratuït, renovació automàtica, estàndard de la indústria |
-| Gestió de processos | PM2 | systemd | Específic Node.js, reload sense downtime, logs integrats |
-| Automatitzacions | n8n (Docker) | Zapier / scripts bash | Self-hosted, gratuït, interfície visual, dades pròpies |
-| Seguretat activa | Monarx Agent | ClamAV / OSSEC | Integrat amb Hostinger, actualitzacions automàtiques |
-| Autenticació | JWT + bcrypt | Sessions + MD5 | Stateless, escalable, bcrypt recomanat per OWASP |
-| Allotjament | VPS Hostinger | AWS EC2 | Cost fix, disc persistent, control total, experiència prèvia |
+| Sistema operativo | Ubuntu 24.04 LTS | Debian 12 | LTS con soporte hasta 2029, amplia comunidad, paquetes actuales |
+| Contenedores | Docker + Docker Compose | LXC | Ecosistema, Docker Hub, Compose para orquestación sencilla |
+| Base de datos | PostgreSQL 16 nativo | MySQL / MongoDB | ACID completo, jsonb, relaciones complejas, pg_dump |
+| Backend | Node.js + Express | Django (Python) | Event loop para WebSockets, mismo lenguaje que frontend |
+| Tiempo real | Socket.io | WebSocket nativo | Reconexión automática, rooms, fallback HTTP |
+| Proxy inverso | Nginx | Apache / Caddy | Rendimiento, madurez, integración Certbot |
+| SSL | Let's Encrypt + Certbot | Certificado comercial | Gratuito, renovación automática, estándar de la industria |
+| Gestión de procesos | PM2 | systemd | Específico Node.js, reload sin downtime, logs integrados |
+| Automatizaciones | n8n (Docker) | Zapier / scripts bash | Self-hosted, gratuito, interfaz visual, datos propios |
+| Seguridad activa | Monarx Agent | ClamAV / OSSEC | Integrado con Hostinger, actualizaciones automáticas |
+| Autenticación | JWT + bcrypt | Sesiones + MD5 | Stateless, escalable, bcrypt recomendado por OWASP |
+| Alojamiento | VPS Hostinger | AWS EC2 | Coste fijo, disco persistente, control total, experiencia previa |
 
-### 9.2 Arquitectura resultant i justificació global
+### 9.2 Arquitectura resultante y justificación global
 
-La combinació de **serveis natius** (PostgreSQL, Nginx, Node.js/PM2) per als components crítics de rendiment i **Docker** per als serveis auxiliars (n8n, EasyPanel) representa la decisió arquitectònica més important del projecte. Respon a un equilibri entre:
+La combinación de **servicios nativos** (PostgreSQL, Nginx, Node.js/PM2) para los componentes críticos de rendimiento y **Docker** para los servicios auxiliares (n8n, EasyPanel) representa la decisión arquitectónica más importante del proyecto. Responde a un equilibrio entre:
 
-- **Rendiment:** Els components que accedeixen intensivament al disc (PostgreSQL) i que gestionen moltes connexions concurrents (Node.js) funcionen millor sense la capa de virtualització Docker.
-- **Mantenibilitat:** Els serveis de tercers (n8n, EasyPanel) es mantenen en contenidors perquè s'actualitzen amb una sola comanda sense afectar el sistema operatiu base.
-- **Fiabilitat:** Experiència directa que la instal·lació nativa de PostgreSQL és més robusta i segura que en Docker en un VPS de producció amb un sol node.
+- **Rendimiento:** Los componentes que acceden intensivamente al disco (PostgreSQL) y que gestionan muchas conexiones concurrentes (Node.js) funcionan mejor sin la capa de virtualización Docker.
+- **Mantenibilidad:** Los servicios de terceros (n8n, EasyPanel) se mantienen en contenedores porque se actualizan con un solo comando sin afectar al sistema operativo base.
+- **Fiabilidad:** Experiencia directa que la instalación nativa de PostgreSQL es más robusta y segura que en Docker en un VPS de producción con un solo nodo.
 
 ---
 
-## 10. Conclusions
+## 10. Conclusiones
 
-### 10.1 Tecnologies seleccionades i la seva relació amb el currículum ASIX
+### 10.1 Tecnologías seleccionadas y su relación con el currículum ASIX
 
-| Àrea del currículum ASIX | Tecnologies aplicades al projecte |
+| Área del currículum ASIX | Tecnologías aplicadas en el proyecto |
 |---|---|
-| Administració de sistemes Linux | Ubuntu 24.04, systemd, cron, SSH, gestió de serveis, pm2 |
-| Virtualització i contenidors | Docker, Docker Compose, volums persistents, xarxes Docker |
-| Bases de dades | PostgreSQL 16, esquema relacional, migracions, índexs, pg_dump |
-| Serveis de xarxa | Nginx proxy invers, SSL/TLS, WebSockets, HTTP/HTTPS |
-| Seguretat | JWT, bcrypt, Monarx, Certbot, UFW (pendent), fail2ban (pendent) |
-| Alta disponibilitat | PM2 (reinici automàtic), backups diaris, rames Git de seguretat |
-| Automatitzacions i scripting | n8n, node-cron, scripts bash, cron del sistema |
+| Administración de sistemas Linux | Ubuntu 24.04, systemd, cron, SSH, gestión de servicios, PM2 |
+| Virtualización y contenedores | Docker, Docker Compose, volúmenes persistentes, redes Docker |
+| Bases de datos | PostgreSQL 16, esquema relacional, migraciones, índices, pg_dump |
+| Servicios de red | Nginx proxy inverso, SSL/TLS, WebSockets, HTTP/HTTPS |
+| Seguridad | JWT, bcrypt, Monarx, Certbot, UFW (pendiente), fail2ban (pendiente) |
+| Alta disponibilidad | PM2 (reinicio automático), backups diarios, ramas Git de seguridad |
+| Automatizaciones y scripting | n8n, node-cron, scripts bash, cron del sistema |
 
-### 10.2 Viabilitat tècnica
+### 10.2 Viabilidad técnica
 
-Totes les tecnologies seleccionades són madures, open source o de llicència gratuïta, amb àmplia documentació i comunitat activa. El servidor actual (96GB de disc, 7.8GB de RAM, Ubuntu 24.04 LTS) té capacitat sobrada per al volum operatiu del projecte, amb un 89% de disc disponible i menys del 25% de RAM en ús.
+Todas las tecnologías seleccionadas son maduras, open source o de licencia gratuita, con amplia documentación y comunidad activa. El servidor actual (96GB de disco, 7.8GB de RAM, Ubuntu 24.04 LTS) tiene capacidad más que suficiente para el volumen operativo del proyecto, con un 89% de disco disponible y menos del 25% de RAM en uso.
 
-### 10.3 Riscos tècnics identificats
+### 10.3 Riesgos técnicos identificados
 
-| Risc | Probabilitat | Impacte | Mesura de mitigació |
+| Riesgo | Probabilidad | Impacto | Medida de mitigación |
 |---|---|---|---|
-| Caiguda del VPS | Baixa | Alt | Backup diari a Google Drive, procés de recuperació documentat |
-| Expiració del certificat SSL | Molt baixa | Alt | Certbot amb cron cada 12h, renovació automàtica |
-| Fallada del procés Node.js | Baixa | Alt | PM2 amb reinici automàtic en menys de 1 segon |
-| Corrupció de la BD | Molt baixa | Crític | pg_dump diari, PostgreSQL natiu (sense risc de volums Docker) |
-| Atac de força bruta SSH | Mitjana | Alt | fail2ban pendent de configurar, accés per clau SSH recomanat |
-| Desbordament del disc | Molt baixa | Mitjà | Neteja automàtica de fotos cada 20 dies, 89% disc lliure |
-| Vulnerabilitat en dependències npm | Mitjana | Mitjà | Actualitzacions periòdiques, `npm audit` en cada desplegament |
+| Caída del VPS | Baja | Alto | Backup diario a Google Drive, proceso de recuperación documentado |
+| Expiración del certificado SSL | Muy baja | Alto | Certbot con cron cada 12h, renovación automática |
+| Fallo del proceso Node.js | Baja | Alto | PM2 con reinicio automático en menos de 1 segundo |
+| Corrupción de la BD | Muy baja | Crítico | pg_dump diario, PostgreSQL nativo (sin riesgo de volúmenes Docker) |
+| Ataque de fuerza bruta SSH | Media | Alto | fail2ban pendiente de configurar, acceso por clave SSH recomendado |
+| Desbordamiento del disco | Muy baja | Medio | Limpieza automática de fotos cada 20 días, 89% disco libre |
+| Vulnerabilidad en dependencias npm | Media | Medio | Actualizaciones periódicas, `npm audit` en cada despliegue |
 
 ---
 
-*Document elaborat com a part del Projecte Final del CFGS Administració de Sistemes Informàtics en Xarxa (ASIX).*  
-*Maig 2026.*
